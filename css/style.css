@@ -1,0 +1,465 @@
+@font-face {font-family: "Sofia Pro"; src: url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.eot"); src: url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.woff") format("woff"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/05428692254b58ccb090358a3dfecfff.svg#Sofia Pro") format("svg"); }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-text : "Sofia Pro";
+    --position-side-bar-right: 100%;
+    --color-bright: white;
+    --primary-color: darkred;
+    --secondary-color: #f4f4f4;
+}
+
+body {
+    background: url(images/chalkboard.jpg);
+    font-family: "Sofia Pro";
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* Side-bars for both sides */
+.side-bar {
+    position: fixed;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 5%;
+    padding: 10px;
+}
+
+.side-bar .contact-me {
+    text-align: center;
+    transform: rotate(-90deg);
+
+}
+
+.text-bright {
+    color: var(--color-bright);
+}
+
+.social ul {
+    list-style: none;
+}
+
+.social ul li {
+    font-size: 24px;
+}
+
+.left {
+    left: 0px;
+}
+
+.right {
+    right: 0px;
+}
+
+/*            Hamburger Menu         */
+.menu-wrap {
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.menu-wrap .toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+}
+
+.menu-wrap .hamburger {
+    background: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 60px;
+    height: 60px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hamburger Line */
+.menu-wrap .hamburger .burger-line {
+    position: relative;
+    flex: none;
+    width: 100%;
+    height: 2px;
+    background: var(--color-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+/* Hamburger Lines - Top | Bottom */
+.menu-wrap .hamburger .burger-line:Before,
+.menu-wrap .hamburger .burger-line:After {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -10px;
+    width: 100%;
+    height: 2px;
+    background: inherit;
+}
+
+/* Burger Anumation */
+.menu-wrap .toggler:checked + .hamburger .burger-line {
+    transform: rotate(135deg);
+}
+
+.menu-wrap .toggler:checked + .hamburger .burger-line:before,
+.menu-wrap .toggler:checked + .hamburger .burger-line:After {
+    top:0;
+    transform: rotate(90deg);
+}
+
+.menu-wrap .hamburger .burger-line:After {
+    top: 10px;
+}
+
+/* haven't finished the menu yet... no time.. */
+
+/* Menu Display
+.menu-wrap .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+#main {
+    height: 100vh;
+}
+
+#main .intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#main .intro h1{
+    position: absolute;
+    color: var(--secondary-color);
+    font-weight: 400;
+    font-size: 138px;
+    line-height: 138px;
+    z-index: 10;
+}
+
+.circle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+#main .intro .take-off-box {
+    color: #940303;
+}
+
+/* plane intro & consistent up & down movements animations */
+
+@keyframes plane {
+    0% {
+        width: 100px;
+        transform: translateY(-500px);
+    }
+    50% {
+        width: 200px;
+        transform: translateY(-250px);
+    }
+    100% {
+        width: 320px;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0px)
+    }
+    50% {
+        transform: translateY(15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+#main .intro .plane {
+    position: fixed;
+    width: 320px;
+    z-index: 3;
+    animation: plane 4s linear,updown 5s ease-in-out 5s infinite;
+}
+
+#main .intro .israel-map {
+    position: relative;
+    width: 280px;
+    z-index: 2;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    background: var(--primary-color);
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* map location blink animation */
+@keyframes location {
+    0% {
+        content: "\f041";
+    }
+    50% {
+        content: "\f3c5";
+    }
+    100% {
+        content: "\f041";
+    }
+}
+
+.location-circle::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f3c5";    
+    font-weight: 900;
+    animation: location 3s linear infinite;
+}
+
+.location-circle {
+    position: absolute;
+    color: var(--color-bright);
+    left: 50%;
+    bottom: 65%;
+    width: 20px;
+    height: 20px;
+    z-index: 3;
+}
+
+.location-text {
+    position: absolute;
+    font-family: fantasy;
+    font-size: x-small;
+    text-align: center;
+    left: 53%;
+    bottom: 65%;
+    width: 60px;
+    color: var(--color-bright);
+    z-index: 3;
+}
+
+/* Ready to take off arrow animation */
+@keyframes arrowdown {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(50px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+
+}
+
+.arrow {
+    font-family: "Font Awesome 5 Free";
+    content: "\f103";
+    font-weight: 900;
+    color: var(--primary-color);
+    animation: arrowdown 3s ease-in-out infinite;
+}
+
+section {
+    height: 100vh;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.introduction-box {
+    background: #333;
+    font-family: var(--primary-text);
+    color: var(--color-bright);
+    text-align: center;
+    padding: 2rem;
+    width: 60%;
+    opacity: 0.5;
+    z-index: 4;
+}
+
+.introduction-box h2,
+.introduction-box p {
+    padding: 20px 0px;
+}
+
+.introduction-box h2 {
+    font-size: 77px;
+    line-height: 77px;
+}
+
+.introduction-box p {
+    font-size: 30px;
+    line-height: 44px;
+}
+
+
+/* Projects section (currently only 2 are being displayed */
+.projects {
+    height: 200vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 15px;
+    width: 90%;
+    height: 100%;
+
+}
+
+.project-box {
+    background: #333;
+    font-family: var(--primary-text);
+    color: var(--color-bright);
+    width: 500px;
+    height: 500px;
+    margin: 2rem;
+    opacity: 0.7;
+    z-index: 4;
+}
+
+.project-box .proj-header {
+    background: var(--primary-color);
+}
+
+.project-box:nth-child(odd) {
+    align-self: flex-end;
+}
+
+.project-box:nth-child(even) .cloud {
+    left: 270px;
+}
+
+.proj-header {
+    display: flex;
+    text-align: right;
+}
+
+.project-box:nth-child(even) .proj-header {
+    display: block;
+    text-align: left;
+}
+
+.proj-header .cloud-wrapper {
+    width: 55%;
+    position: relative;
+    top: -50px;
+}
+
+.proj-header .text-wrapper {
+    width: 60%;
+    padding: 5px;
+}
+
+.cloud { 
+    background: #ECEFF1;
+    box-shadow: 7px 7px rgb(81, 0, 0);
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    overflow: hidden;
+    top: -40px;
+    left: 25px;
+    z-index: 5;
+ }
+
+ 
+ .cloud video {
+    position: relative;
+    height: 120%;
+    top: -25px;
+}
+
+.cloud a:hover {
+    opacity: 0.6;
+}
+
+.cloud a {
+    background: url(images/graph-paper-red-black-grid-1920x1080-c2-000000-ff0000-l2-2-26-a-0-f-20.png) center center/cover;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: .25s;
+} 
+
+.desc-container {
+    color: black;
+    position: relative;
+    top: 20%;
+    padding: 1rem;
+}
+
+.desc-container p {
+    padding: 1rem 0;
+}
+
+.outro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.just-landed {
+    position: relative;
+    text-align: center;
+    bottom: 20px;
+}
+
+.bigger-text {
+    color: var(--color-bright);
+    font-weight: 500;
+    font-size: 20px;;
+}
